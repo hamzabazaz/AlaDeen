@@ -1,0 +1,40 @@
+<div class="container mt-5">
+
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Search any product</mat-label>
+        <input matInput #searchKeyword (keyup)="searchByKeyWord(searchKeyword.value)"name="searchKey" id="searchKey" placeholder="Search any product">
+        <mat-hint>Search any product</mat-hint>
+    </mat-form-field>
+
+    <mat-grid-list cols="4" rowHeight="3:5" gutterSize="10">
+        <mat-grid-tile *ngFor="let p of productDetails">
+            <div class="row p-5">
+                <div class="image-container">
+                    <img class="home-page-product-image" [src]="p.productImages[0].url">
+                </div>
+                
+                <div class="mt-3">
+                    <p><b>{{p.productName}}</b></p>
+                </div>
+                <div class="mt-2">
+                    <p style="white-space: inherit;height: 20px;width:288px ;overflow: hidden; text-overflow: ellipsis;">{{p.productDescription}}</p>
+                </div>
+
+                <div class="mt-2">
+                    <b>Rs. {{p.productDiscountedPrice}}</b> &nbsp;  <b style="text-decoration: line-through;">{{p.productActualPrice}} </b>
+                </div>
+                <div class="mt-2">
+                    <button type="button" mat-raised-button color="warn" (click)="showProductDetails(p.productId)">View Details</button>
+                </div>
+                
+            </div>
+        </mat-grid-tile>
+        
+      </mat-grid-list>
+      <div class="text-center mt-5"  style="padding-bottom: 40px;" *ngIf="showLoadButton">
+        <button type="button" mat mat-raised-button color="primary" (click)="LoadMoreProduct()">Load more</button>
+      </div>
+      <div class="mt-5">
+
+      </div>
+</div>
